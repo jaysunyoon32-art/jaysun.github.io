@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jaysun Yoon | Finance & Analytics</title>
+  <meta name="description" content="Jaysun Yoon, Rutgers finance and business analytics student building models and code for deal work in gaming and sports betting.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+  <style>
+:root {
+      --paper: #EEF1F4;
+      --ink: #16233B;
+      --steel: #56677E;
+      --brass: #A8834A;
+      --stone: #F9FAFB;
+      --line: #CBD3DD;
+      --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      font-family: var(--font);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+    .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Nav */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(238, 241, 244, 0.94);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; height: 3.75rem; }
+    .mark { font-weight: 800; font-stretch: 112%; text-decoration: none; letter-spacing: -0.01em; }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    nav ul a { text-decoration: none; color: var(--steel); font-size: 0.95rem; }
+    nav ul a:hover { color: var(--ink); }
+
+    /* Hero / personal statement */
+    .hero { padding: 6rem 0 4.5rem; border-bottom: 1px solid var(--line); }
+    .hero h1 {
+      font-size: clamp(2.1rem, 5.2vw, 3.9rem);
+      font-weight: 700;
+      font-stretch: 78%;
+      line-height: 1.04;
+      letter-spacing: -0.015em;
+      max-width: 19ch;
+    }
+    .hero .who { margin-top: 2rem; color: var(--steel); max-width: 42rem; }
+    .hero .who strong { color: var(--ink); font-weight: 600; }
+    .contact { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn {
+      display: inline-block; text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      padding: 0.65rem 1.15rem; border: 1.5px solid var(--ink); border-radius: 2px;
+    }
+    .btn.primary { background: var(--ink); color: var(--paper); }
+    .btn:hover { border-color: var(--brass); }
+
+    /* Sections */
+    section { padding: 4.5rem 0; }
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700; font-stretch: 78%;
+      letter-spacing: -0.01em; margin-bottom: 0.5rem;
+    }
+    .intro { color: var(--steel); max-width: 40rem; margin-bottom: 2.5rem; }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+    .skills h3 {
+      font-size: 1rem; font-weight: 700; padding-bottom: 0.6rem; margin-bottom: 1rem;
+      border-bottom: 2px solid var(--ink);
+    }
+    .skills ul { list-style: none; }
+    .skills li { padding: 0.55rem 0; border-bottom: 1px solid var(--line); }
+    .skills li span { display: block; color: var(--steel); font-size: 0.88rem; line-height: 1.45; }
+
+    /* Projects as deal tombstones */
+    .tombstones { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .tomb {
+      background: var(--stone); color: var(--ink);
+      border: 1px solid var(--brass);
+      outline: 1px solid var(--brass); outline-offset: -8px;
+      padding: 2.25rem 1.75rem 1.75rem;
+      text-align: center;
+      display: flex; flex-direction: column;
+    }
+    .tomb:last-child:nth-child(odd) {
+      grid-column: 1 / -1; justify-self: center;
+      width: 100%; max-width: calc(50% - 0.75rem);
+    }
+    .tomb .role { font-size: 0.88rem; color: var(--steel); }
+    .tomb h3 {
+      font-size: 1.55rem; font-weight: 800; font-stretch: 70%;
+      line-height: 1.1; margin: 0.6rem 0 0.9rem;
+    }
+    .tomb .rule { width: 2.5rem; height: 2px; background: var(--brass); margin: 0 auto 1rem; }
+    .tomb p { font-size: 0.94rem; line-height: 1.55; text-align: left; }
+    .tomb .stack { margin-top: 1rem; font-size: 0.84rem; color: var(--steel); text-align: left; }
+    .tomb .foot {
+      margin-top: auto; padding-top: 1.25rem;
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 0.88rem;
+    }
+    .tomb .foot a { font-weight: 600; text-decoration-color: var(--brass); text-underline-offset: 3px; }
+    .tomb .year { color: var(--steel); }
+
+
+    /* Scroll fade: content fades in as it enters the screen and out as it leaves */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      transition-delay: var(--delay, 0s);
+    }
+    .js .reveal.in-view { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    footer { padding: 2.5rem 0; color: var(--steel); font-size: 0.9rem; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+
+
+    /* Experience */
+    .jobs { list-style: none; }
+    .job {
+      display: grid; grid-template-columns: 4.5rem 1fr; gap: 1.5rem;
+      padding: 2rem 0; border-top: 1px solid var(--line);
+    }
+    .job:last-child { border-bottom: 1px solid var(--line); }
+    .logo {
+      position: relative; width: 4.5rem; height: 4.5rem;
+      background: #fff; border: 1px solid var(--line); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .logo span { font-weight: 800; font-stretch: 75%; font-size: 1.05rem; color: var(--ink); }
+    .logo img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: contain; padding: 0.55rem; background: #fff;
+    }
+    .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    .job h3 { font-size: 1.3rem; font-weight: 700; font-stretch: 85%; line-height: 1.2; }
+    .job .company { color: var(--steel); margin-top: 0.15rem; }
+    .job .dates { color: var(--steel); font-size: 0.92rem; white-space: nowrap; }
+    .job .desc { margin-top: 0.75rem; max-width: 46rem; }
+    .job ul { margin-top: 0.9rem; padding-left: 1.1rem; max-width: 46rem; list-style: disc; }
+    .job li { margin-bottom: 0.4rem; }
+    .job li::marker { color: var(--brass); }
+    @media (max-width: 520px) {
+      .job { grid-template-columns: 3.25rem 1fr; gap: 1rem; }
+      .logo { width: 3.25rem; height: 3.25rem; }
+    }
+
+
+    .logo--fill img { padding: 0; }
+    .job .company .place { display: block; font-size: 0.9rem; }
+    #externships { background: var(--stone); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    @media (max-width: 860px) {
+      .skills, .tombstones { grid-template-columns: 1fr; }
+      .tomb:last-child:nth-child(odd) { max-width: none; }
+      .hero { padding: 4rem 0 3.5rem; }
+    }
+    @media (max-width: 520px) {
+      nav ul { gap: 1rem; }
+      nav ul li:last-child { display: none; }
+    }
+  
+    /* Nav current page */
+    nav ul a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+
+    /* Home: projects teaser */
+    .teaser { background: var(--ink); color: var(--paper); }
+    .teaser .intro { color: #AEB9C8; }
+    .cats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+    .cat-link {
+      display: block; text-decoration: none; color: var(--paper);
+      border-top: 2px solid var(--brass); padding-top: 1rem;
+    }
+    .cat-link strong { display: block; font-size: 1.15rem; font-stretch: 85%; }
+    .cat-link span { color: #AEB9C8; font-size: 0.92rem; }
+    .cat-link:hover strong { text-decoration: underline; text-decoration-color: var(--brass); text-underline-offset: 4px; }
+    .teaser .btn { border-color: var(--paper); color: var(--paper); }
+    .teaser .btn.primary { background: var(--paper); color: var(--ink); }
+
+    /* Projects page */
+    .page-head { padding: 5rem 0 3rem; border-bottom: 1px solid var(--line); }
+    .page-head h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 700; font-stretch: 78%;
+      line-height: 1.05; letter-spacing: -0.015em;
+    }
+    .page-head p { margin-top: 1rem; color: var(--steel); max-width: 40rem; }
+    .jump { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .category:nth-of-type(odd) { background: var(--ink); color: var(--paper); }
+    .category:nth-of-type(odd) .intro { color: #AEB9C8; }
+
+    @media (max-width: 860px) { .cats { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav aria-label="Main">
+      <a class="mark" href="index.html">Jaysun Yoon</a>
+      <ul>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- Personal statement -->
+  <div class="hero">
+    <div class="wrap">
+      <h1>I'm a finance and analytics student who builds the models and the code behind deal work in gaming and sports betting.</h1>
+      <p class="who">
+        <strong>Rutgers Honors College</strong>, Finance and Business Analytics &amp; IT, graduating May 2029.
+        Investment Banking Summer Analyst at <strong>XST Capital Group</strong> and Fund Analyst with <strong>TAMID Group</strong>.
+      </p>
+      <div class="contact" id="contact">
+        <a class="btn primary" href="mailto:jaysunyoon32@gmail.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/jaysun-yoon/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
+      <p class="intro">Where I've worked, most recent first.</p>
+      <ol class="jobs">
+        <li class="job">
+          <div class="logo">
+            <span aria-hidden="true">RU</span>
+            <img src="farmers-market-logo.png" alt="Rutgers Community Farmers Market logo" onerror="this.remove()">
+          </div>
+          <div>
+            <div class="job-head">
+              <div>
+                <h3>Rutgers Community Farmers Market</h3>
+                <div class="company">Rutgers University<span class="place">New Brunswick, NJ</span></div>
+              </div>
+              <span class="dates">Present</span>
+            </div>
+          </div>
+        </li>
+        <li class="job">
+          <div class="logo">
+            <span aria-hidden="true">TAMID</span>
+            <img src="tamid-logo.png" alt="TAMID Group logo" onerror="this.remove()">
+          </div>
+          <div>
+            <div class="job-head">
+              <div>
+                <h3>Fund Analyst</h3>
+                <div class="company">TAMID Group at Rutgers<span class="place">New Brunswick, NJ</span></div>
+              </div>
+              <span class="dates">2026 to present</span>
+            </div>
+            <p class="desc">I research and pitch public equities for TAMID's student fund, and I've worked on a fundraising strategy for an Israeli startup accelerator.</p>
+          </div>
+        </li>
+        <li class="job">
+          <div class="logo logo--fill">
+            <span aria-hidden="true">XST</span>
+            <img src="xst-logo.png" alt="XST Capital Group logo" onerror="this.remove()">
+          </div>
+          <div>
+            <div class="job-head">
+              <div>
+                <h3>Investment Banking Summer Analyst</h3>
+                <div class="company">XST Capital Group, boutique M&amp;A advisory for digital gaming, iGaming, and sports betting<span class="place">Jersey City, NJ</span></div>
+              </div>
+              <span class="dates">May 2026 to Aug 2026</span>
+            </div>
+            <p class="desc">I worked on 3 live transactions, drafting a CIM for a $25M debt raise and building three-statement and DCF models. I also built a Python tool that tracks executive hiring across gaming to support business development.</p>
+          </div>
+        </li>
+        <li class="job">
+          <div class="logo">
+            <span aria-hidden="true">RU</span>
+            <img src="rutgers-ipo-logo.png" alt="Rutgers University logo" onerror="this.remove()">
+          </div>
+          <div>
+            <div class="job-head">
+              <div>
+                <h3>Technology Support</h3>
+                <div class="company">Rutgers University Institutional Planning &amp; Operations<span class="place">Piscataway, NJ</span></div>
+              </div>
+              <span class="dates">Mar 2026 to May 2026</span>
+            </div>
+            <p class="desc">I restored 150+ Windows devices for resale across university departments and kept inventory records for 500+ technology assets.</p>
+          </div>
+        </li>
+        <li class="job">
+          <div class="logo logo--fill">
+            <span aria-hidden="true">EBIN</span>
+            <img src="ebin-logo.png" alt="Ebin New York logo" onerror="this.remove()">
+          </div>
+          <div>
+            <div class="job-head">
+              <div>
+                <h3>Human Resources Intern, Strategic Planning</h3>
+                <div class="company">Ebin New York<span class="place">South Hackensack, NJ</span></div>
+              </div>
+              <span class="dates">Jun 2024 to Feb 2025</span>
+            </div>
+            <p class="desc">I ran day-to-day HR operations for a 100+ person company, handling monthly requests and personnel records and onboarding 15+ new hires.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="externships">
+    <div class="wrap">
+      <h2>Externships</h2>
+      <p class="intro">Selective programs that put me inside an institutional investing firm.</p>
+      <ol class="jobs">
+        <li class="job">
+          <div class="logo">
+            <span aria-hidden="true">MIM</span>
+            <img src="mim-logo.png" alt="MetLife Investment Management logo" onerror="this.remove()">
+          </div>
+          <div>
+            <div class="job-head">
+              <div>
+                <h3>Future Leaders Extern</h3>
+                <div class="company">MetLife Investment Management<span class="place">Remote</span></div>
+              </div>
+              <span class="dates">May 2026 to Jun 2026</span>
+            </div>
+            <p class="desc">One of 60 students selected for an institutional investing externship covering private markets, fixed income, and real estate.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <p class="intro">What I bring to a deal team or an analytics team on day one.</p>
+      <div class="skills">
+        <div>
+          <h3>Finance</h3>
+          <ul>
+            <li>Financial modeling<span>Three-statement projections, DCF, WACC, comparable company analysis</span></li>
+            <li>M&amp;A advisory<span>CIM drafting and modeling support on 3 live transactions</span></li>
+            <li>Equity research<span>Stock pitches with a written thesis and valuation</span></li>
+            <li>Market intelligence<span>Competitive positioning and investor landscape analysis</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Data and code</h3>
+          <ul>
+            <li>Python<span>Data pipelines, automation, API integrations</span></li>
+            <li>PostgreSQL<span>Querying and shaping data for analysis</span></li>
+            <li>LLM tooling<span>Claude API and OpenAI Whisper for research workflows</span></li>
+            <li>APIs and data sourcing<span>REST APIs, RSS feeds, structured web data</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Tools and communication</h3>
+          <ul>
+            <li>Bloomberg Terminal<span>Bloomberg Market Concepts certified</span></li>
+            <li>Excel and PowerPoint<span>Financial models, pitch slides, client-ready decks</span></li>
+            <li>Visual design<span>Newsletter redesign and branded content series</span></li>
+            <li>Video editing<span>Short-form and long-form content</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="teaser" id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <p class="intro">Five projects across case competitions and finance, including a first-place finish at a KPMG case competition.</p>
+      <div class="cats">
+        <a class="cat-link" href="projects.html#case-competitions"><strong>Case competitions</strong><span>PipeLine, Barbed Suture Market Entry</span></a>
+        <a class="cat-link" href="projects.html#finance-projects"><strong>Finance projects</strong><span>Oracle, General Motors, Next October</span></a>
+      </div>
+      <a class="btn primary" href="projects.html">See all projects</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Jaysun Yoon, New Jersey</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+    document.documentElement.classList.add('js');
+    var targets = document.querySelectorAll(
+      '.hero h1, .hero .who, .hero .contact, .page-head h1, .page-head p, section h2, section .intro, .job, .skills > div, .cats > a, .tomb'
+    );
+    // Stagger items that sit side by side so they arrive one after another
+    document.querySelectorAll('.skills, .cats, .tombstones').forEach(function (group) {
+      Array.prototype.forEach.call(group.children, function (el, i) {
+        var step = !group.classList.contains('tombstones') ? i * 0.12 : (i % 2) * 0.12;
+        el.style.setProperty('--delay', step + 's');
+      });
+    });
+    targets.forEach(function (el) { el.classList.add('reveal'); });
+
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(function (el) { el.classList.add('in-view'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.classList.toggle('in-view', entry.isIntersecting);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    targets.forEach(function (el) { observer.observe(el); });
+  })();
+</script>
+</body>
+</html>

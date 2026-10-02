@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects | Jaysun Yoon</title>
+  <meta name="description" content="Case competitions and finance projects by Jaysun Yoon.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+  <style>
+:root {
+      --paper: #EEF1F4;
+      --ink: #16233B;
+      --steel: #56677E;
+      --brass: #A8834A;
+      --stone: #F9FAFB;
+      --line: #CBD3DD;
+      --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      font-family: var(--font);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+    .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Nav */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(238, 241, 244, 0.94);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; height: 3.75rem; }
+    .mark { font-weight: 800; font-stretch: 112%; text-decoration: none; letter-spacing: -0.01em; }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    nav ul a { text-decoration: none; color: var(--steel); font-size: 0.95rem; }
+    nav ul a:hover { color: var(--ink); }
+
+    /* Hero / personal statement */
+    .hero { padding: 6rem 0 4.5rem; border-bottom: 1px solid var(--line); }
+    .hero h1 {
+      font-size: clamp(2.1rem, 5.2vw, 3.9rem);
+      font-weight: 700;
+      font-stretch: 78%;
+      line-height: 1.04;
+      letter-spacing: -0.015em;
+      max-width: 19ch;
+    }
+    .hero .who { margin-top: 2rem; color: var(--steel); max-width: 42rem; }
+    .hero .who strong { color: var(--ink); font-weight: 600; }
+    .contact { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn {
+      display: inline-block; text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      padding: 0.65rem 1.15rem; border: 1.5px solid var(--ink); border-radius: 2px;
+    }
+    .btn.primary { background: var(--ink); color: var(--paper); }
+    .btn:hover { border-color: var(--brass); }
+
+    /* Sections */
+    section { padding: 4.5rem 0; }
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700; font-stretch: 78%;
+      letter-spacing: -0.01em; margin-bottom: 0.5rem;
+    }
+    .intro { color: var(--steel); max-width: 40rem; margin-bottom: 2.5rem; }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+    .skills h3 {
+      font-size: 1rem; font-weight: 700; padding-bottom: 0.6rem; margin-bottom: 1rem;
+      border-bottom: 2px solid var(--ink);
+    }
+    .skills ul { list-style: none; }
+    .skills li { padding: 0.55rem 0; border-bottom: 1px solid var(--line); }
+    .skills li span { display: block; color: var(--steel); font-size: 0.88rem; line-height: 1.45; }
+
+    /* Projects as deal tombstones */
+    .tombstones { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .tomb {
+      background: var(--stone); color: var(--ink);
+      border: 1px solid var(--brass);
+      outline: 1px solid var(--brass); outline-offset: -8px;
+      padding: 2.25rem 1.75rem 1.75rem;
+      text-align: center;
+      display: flex; flex-direction: column;
+    }
+    .tomb:last-child:nth-child(odd) {
+      grid-column: 1 / -1; justify-self: center;
+      width: 100%; max-width: calc(50% - 0.75rem);
+    }
+    .tomb .role { font-size: 0.88rem; color: var(--steel); }
+    .tomb h3 {
+      font-size: 1.55rem; font-weight: 800; font-stretch: 70%;
+      line-height: 1.1; margin: 0.6rem 0 0.9rem;
+    }
+    .tomb .rule { width: 2.5rem; height: 2px; background: var(--brass); margin: 0 auto 1rem; }
+    .tomb p { font-size: 0.94rem; line-height: 1.55; text-align: left; }
+    .tomb .stack { margin-top: 1rem; font-size: 0.84rem; color: var(--steel); text-align: left; }
+    .tomb .foot {
+      margin-top: auto; padding-top: 1.25rem;
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 0.88rem;
+    }
+    .tomb .foot a { font-weight: 600; text-decoration-color: var(--brass); text-underline-offset: 3px; }
+    .tomb .year { color: var(--steel); }
+
+
+    /* Scroll fade: content fades in as it enters the screen and out as it leaves */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      transition-delay: var(--delay, 0s);
+    }
+    .js .reveal.in-view { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    footer { padding: 2.5rem 0; color: var(--steel); font-size: 0.9rem; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+
+    @media (max-width: 860px) {
+      .skills, .tombstones { grid-template-columns: 1fr; }
+      .tomb:last-child:nth-child(odd) { max-width: none; }
+      .hero { padding: 4rem 0 3.5rem; }
+    }
+    @media (max-width: 520px) {
+      nav ul { gap: 1rem; }
+      nav ul li:last-child { display: none; }
+    }
+  
+    /* Nav current page */
+    nav ul a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+
+    /* Home: projects teaser */
+    .teaser { background: var(--ink); color: var(--paper); }
+    .teaser .intro { color: #AEB9C8; }
+    .cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+    .cat-link {
+      display: block; text-decoration: none; color: var(--paper);
+      border-top: 2px solid var(--brass); padding-top: 1rem;
+    }
+    .cat-link strong { display: block; font-size: 1.15rem; font-stretch: 85%; }
+    .cat-link span { color: #AEB9C8; font-size: 0.92rem; }
+    .cat-link:hover strong { text-decoration: underline; text-decoration-color: var(--brass); text-underline-offset: 4px; }
+    .teaser .btn { border-color: var(--paper); color: var(--paper); }
+    .teaser .btn.primary { background: var(--paper); color: var(--ink); }
+
+    /* Projects page */
+    .page-head { padding: 5rem 0 3rem; border-bottom: 1px solid var(--line); }
+    .page-head h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 700; font-stretch: 78%;
+      line-height: 1.05; letter-spacing: -0.015em;
+    }
+    .page-head p { margin-top: 1rem; color: var(--steel); max-width: 40rem; }
+    .jump { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .category:nth-of-type(odd) { background: var(--ink); color: var(--paper); }
+    .category:nth-of-type(odd) .intro { color: #AEB9C8; }
+
+    @media (max-width: 860px) { .cats { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav aria-label="Main">
+      <a class="mark" href="index.html">Jaysun Yoon</a>
+      <ul>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="projects.html" aria-current="page">Projects</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="page-head">
+    <div class="wrap">
+      <h1>Projects</h1>
+      <p>Strategy cases and valuation work. Each one links to the deck, model, or prototype.</p>
+      <div class="jump">
+        <a class="btn" href="#case-competitions">Case competitions</a>
+        <a class="btn" href="#finance-projects">Finance projects</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="category" id="case-competitions">
+    <div class="wrap">
+      <h2>Case competitions</h2>
+      <p class="intro">Team strategy cases judged by firms, built and presented under a deadline.</p>
+      <div class="tombstones">
+        <article class="tomb">
+          <div class="role">KPMG BITS Case Competition, 1st place</div>
+          <h3>PipeLine</h3>
+          <div class="rule"></div>
+          <p>A career intelligence platform that helps students choose colleges by real job outcomes instead of rankings and reputation. Placed 1st of 12 teams. Our four-person team designed an interactive Figma prototype with profile-based college matching, school comparisons, career pathways, and an AI career advisor, sized a market of 3.5M graduating seniors a year, and laid out a freemium business model.</p>
+          <p class="stack">Product strategy, market sizing, competitive analysis, business model, Figma prototype</p>
+          <div class="foot">
+            <span>
+              <a href="pipeline.pdf" target="_blank" rel="noopener">View deck</a>
+              &nbsp;&nbsp;
+              <a href="https://slab-solar-81485707.figma.site/" target="_blank" rel="noopener">Live prototype</a>
+            </span>
+            <span class="year">2026</span>
+          </div>
+        </article>
+        <article class="tomb">
+          <div class="role">Johnson &amp; Johnson University Case Competition</div>
+          <h3>Barbed Suture Market Entry</h3>
+          <div class="rule"></div>
+          <p>A five-person team strategy for a wound closure leader with no barbed suture product. We made five linked decisions on R&amp;D, pricing, marketing, supply chain, and staffing, then ran the combinations through a 10-year model. The chosen mix projects $23.2B NPV at a 7% WACC, with revenue growing from $5.6B to $17.6B, and sensitivity analysis flagged pricing as the largest downside risk at $3.4B of NPV.</p>
+          <p class="stack">Excel, NPV and cash flow modeling, sensitivity analysis, SWOT, PowerPoint</p>
+          <div class="foot">
+            <a href="jj-case-competition.pdf" target="_blank" rel="noopener">View deck</a>
+            <span class="year">2026</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="category" id="finance-projects">
+    <div class="wrap">
+      <h2>Finance projects</h2>
+      <p class="intro">Valuation, market sizing, and investment work, on my own and through Rutgers finance organizations.</p>
+      <div class="tombstones">
+        <article class="tomb">
+          <div class="role">Personal project</div>
+          <h3>Oracle: Long</h3>
+          <div class="rule"></div>
+          <p>A long recommendation on Oracle at $147 with a $170 price target. Oracle's backlog of contracted revenue grew 46% to $664B while the stock fell 51%, and the pitch argues the market repriced a funded backlog as a debt-financed bet. Built a five-year DCF with an EBIT exit multiple, cross-checked against forward P/E and a sum-of-the-parts, with a sensitivity range of $111 to $218.</p>
+          <p class="stack">DCF, WACC, forward multiples, sum-of-the-parts, sensitivity analysis, Excel</p>
+          <div class="foot">
+            <span>
+              <a href="orcl-stock-pitch.pdf" target="_blank" rel="noopener">View pitch</a>
+              &nbsp;&nbsp;
+              <a href="orcl-valuation-model.xlsx" download>Download model</a>
+            </span>
+            <span class="year">2026</span>
+          </div>
+        </article>
+
+        <article class="tomb">
+          <div class="role">Little Investment Bankers of Rutgers</div>
+          <h3>General Motors: Buy</h3>
+          <div class="rule"></div>
+          <p>A buy recommendation on GM presented to a Neuberger Berman portfolio manager, arguing truck and SUV demand, a cheaper EV battery roadmap, and a $20B to $25B software revenue target outweighed capital intensity. Built a segment-level revenue build through 2028E and benchmarked GM against 5 global automakers.</p>
+          <p class="stack">Revenue build, income statement projections, EV/EBITDA, EV/Revenue, P/E comps</p>
+          <div class="foot">
+            <span>Deck available on request</span>
+            <span class="year">2025</span>
+          </div>
+        </article>
+        <article class="tomb">
+          <div class="role">TAMID Group at Rutgers</div>
+          <h3>Next October: Fundraising Strategy</h3>
+          <div class="rule"></div>
+          <p>A fundraising plan for an Israeli startup accelerator that dedicates each startup it supports to the memory of someone killed on October 7. Our five-person team sized the donor market from $35.5B down to a $2.5M 12–24 month target, mapped the competition with Porter's Five Forces, and split that target across four donor segments with a tailored pitch for each.</p>
+          <p class="stack">Market sizing (TAM/SAM/SOM), Porter's Five Forces, SWOT, donor segmentation</p>
+          <div class="foot">
+            <a href="tamid-next-october.pdf" target="_blank" rel="noopener">View deck</a>
+            <span class="year">2026</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Jaysun Yoon, New Jersey</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+    document.documentElement.classList.add('js');
+    var targets = document.querySelectorAll(
+      '.hero h1, .hero .who, .hero .contact, .page-head h1, .page-head p, section h2, section .intro, .skills > div, .cats > a, .tomb'
+    );
+    // Stagger items that sit side by side so they arrive one after another
+    document.querySelectorAll('.skills, .cats, .tombstones').forEach(function (group) {
+      Array.prototype.forEach.call(group.children, function (el, i) {
+        var step = !group.classList.contains('tombstones') ? i * 0.12 : (i % 2) * 0.12;
+        el.style.setProperty('--delay', step + 's');
+      });
+    });
+    targets.forEach(function (el) { el.classList.add('reveal'); });
+
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(function (el) { el.classList.add('in-view'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.classList.toggle('in-view', entry.isIntersecting);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    targets.forEach(function (el) { observer.observe(el); });
+  })();
+</script>
+</body>
+</html>
